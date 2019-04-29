@@ -1,0 +1,6 @@
+temp
+.gradle
+.idea
+build
+gradle/
+docker/appl

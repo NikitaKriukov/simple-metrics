@@ -1,0 +1,121 @@
+swagger: "2.0"
+info:
+  version: 0.0.1
+  title: Nikita Simple Service REST API
+host: localhost
+basePath: /nikita/simple/service
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+#========================================
+#  Paths
+#========================================
+paths:
+  /cpu:
+    get:
+      summary: get instance CPU utilization
+      operationId: getCpuUtilization
+      tags:
+        - SystemUtilizationService
+      parameters: []
+      responses:
+        "200":
+          description: The CPU utilization Data
+          schema:
+            $ref: '#/definitions/SystemCpuInfo'
+        400:
+          $ref: '#/responses/400_BadRequest'
+        404:
+          $ref: '#/responses/404_NotFound'
+        500:
+          $ref: '#/responses/500_ServerError'
+        default:
+          $ref: '#/responses/DefaultError'
+  /memory:
+    get:
+      summary: get Memory utilization
+      operationId: getMemoryUtilization
+      tags:
+        - SystemUtilizationService
+      parameters: []
+      responses:
+        "200":
+          description: The CPU utilization Data
+          schema:
+            $ref: '#/definitions/MemoryInfo'
+        400:
+          $ref: '#/responses/400_BadRequest'
+        404:
+          $ref: '#/responses/404_NotFound'
+        500:
+          $ref: '#/responses/500_ServerError'
+        default:
+          $ref: '#/responses/DefaultError'
+
+#========================================
+#  Parameters
+#========================================
+
+
+#========================================
+#  Definitions
+#========================================
+
+definitions:
+  MemoryInfo:
+    required:
+      - maxMemory
+      - allocatedMemory
+      - freeMemory
+    properties:
+      maxMemory:
+        type: integer
+        format: int32
+      allocatedMemory:
+        type: integer
+        format: int32
+      freeMemory:
+        type: integer
+        format: int32
+  SystemCpuInfo:
+    required:
+      - systemCpuLoad
+    properties:
+      systemCpuLoad:
+        type: integer
+        format: int32
+  Error:
+    required:
+      - code
+      - message
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+
+#========================================
+#  Responses
+#========================================
+responses:
+  400_BadRequest:
+    description: Bad Request
+    schema:
+      $ref: '#/definitions/Error'
+  404_NotFound:
+    description: Not Found
+    schema:
+      $ref: '#/definitions/Error'
+  500_ServerError:
+    description: Internal Server Error
+    schema:
+      $ref: '#/definitions/Error'
+  DefaultError:
+    description: An error has occurred
+    schema:
+      $ref: '#/definitions/Error'

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t nikita_monitoring .
+docker build -t temp/nikita_monitoring:1.0 .

@@ -44,10 +44,10 @@ One way to start the application is to go to the directory and run the start.sh.
 Another way is to start application from docker container. 
 - open a terminal 
 - cd ./docker 
-- ./buildDocker.sh  -- it will create a new Docker image
+- ./buildDocker.sh  -- it will create a new Docker image. It can be done only once.
 - ./runDocker.sh    -- it will start a new Docker container from the generated image. 
 
 After the backend part is started, just open http://localhost:8080/ at a browser. You can note that the application start showing CPU and Memory utilization metrics. 
 
-In order to stop the application just press Ctrl+C in the terminal and press Y when it's prompted. 
+In order to stop the application just press Ctrl+C in the terminal and press Y when it's prompted. The Docker container should be stopped and deleted automatically (because of the --rm option). 
 You can note that the metrics now show N/A.
